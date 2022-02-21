@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ClientOnly, useHydrated } from "remix-utils";
-import "@esri/calcite-components/dist/calcite/calcite.css";
 
 function Index() {
   const hydrated = useHydrated();
