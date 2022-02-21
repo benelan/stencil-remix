@@ -8,5 +8,8 @@ module.exports = {
   serverBuildDirectory: "build",
   devServerPort: 8002,
   ignoredRouteFiles: [".*"],
-  serverDependenciesToBundle: ["@esri/calcite-components"],
+  serverDependenciesToBundle: [
+    "@esri/calcite-components",
+    "@esri/calcite-components-react",
+  ],
 };

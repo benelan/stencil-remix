@@ -1,14 +1,16 @@
 import { useEffect } from "react";
-import { ClientOnly, useHydrated } from "remix-utils";
 import styles from "@esri/calcite-components/dist/calcite/calcite.css";
+import {
+  CalciteCard,
+  CalciteButton,
+  CalciteLink,
+} from "@esri/calcite-components-react";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
 }
 
 function Index() {
-  const hydrated = useHydrated();
-
   useEffect(() => {
     const {
       setAssetPath,
@@ -27,53 +29,42 @@ function Index() {
       <h1>Stencil components in Remix.run</h1>
       <p>
         If you're forcing the components to load on the client like this, then
-        you might as well use CRA.
+        you might as well use CRA. Or better yet, an SSR framework that supports pre-rendering.
       </p>
-      <ClientOnly fallback={<p>Loading...</p>}>
-        <calcite-card>
-          <span slot="title">Card title</span>
-          <span slot="subtitle">
-            by &nbsp;<calcite-link href>username</calcite-link>
-          </span>
-          <div>
-            Created: Jan 1, 2020
-            <br />
-            Updated: Feb 2, 2021
-            <br />
-            View Count: 0
-          </div>
-          <calcite-button
-            onClick={() => alert("I'm a working button")}
-            slot="footer-leading"
+      <CalciteCard>
+        <span slot="title">Card title</span>
+        <span slot="subtitle">
+          by &nbsp;<CalciteLink href>username</CalciteLink>
+        </span>
+        <div>
+          Created: Jan 1, 2020
+          <br />
+          Updated: Feb 2, 2021
+          <br />
+          View Count: 0
+        </div>
+        <CalciteButton
+          onClick={() => alert("client code")}
+          slot="footer-leading"
+          color="light"
+          scale="s"
+          icon-start="plus"
+        ></CalciteButton>
+        <div slot="footer-trailing">
+          <CalciteButton
+            onClick={() => alert("client code")}
             color="light"
-            scale="s"
-            icon-start="plus"
-          ></calcite-button>
-          <div slot="footer-trailing">
-            <calcite-button
-              onClick={() => alert("I'm a working button")}
-              color="light"
-              id="card-icon-test-2"
-              icon-start="layer"
-            ></calcite-button>
-            <calcite-button
-              onClick={() => alert("I'm a working button")}
-              color="light"
-              id="card-icon-test-1"
-              icon-start="attachment"
-            ></calcite-button>
-          </div>
-        </calcite-card>
-
-        {/* https://github.com/remix-run/remix/tree/main/examples/client-only-components */}
-        <button
-          type="button"
-          disabled={!hydrated}
-          onClick={() => alert("I has JS loaded!")}
-        >
-          Try me!
-        </button>
-      </ClientOnly>
+            id="card-icon-test-2"
+            icon-start="layer"
+          ></CalciteButton>
+          <CalciteButton
+            onClick={() => alert("client code")}
+            color="light"
+            id="card-icon-test-1"
+            icon-start="attachment"
+          ></CalciteButton>
+        </div>
+      </CalciteCard>
     </>
   );
 }

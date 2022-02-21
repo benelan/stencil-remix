@@ -1,22 +1,14 @@
 # Stencil Remix
 See `master` branch for repro case of https://github.com/ionic-team/stencil-ds-output-targets/issues/226
 
-[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to [render on the client](https://github.com/benelan/stencil-remix/blob/fix/app/routes/index.jsx). However, you might as well use CRA if you can't render your UI on the server. The better option is to use NextJS or another framework that supports pre-rendering.
+[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to [render on the client](https://github.com/benelan/stencil-remix/blob/react-output-target/app/routes/index.jsx). However, you might as well use CRA if you can't render your UI on the server. The better option is to use NextJS or another framework that supports pre-rendering.
 
-```jsx
-useEffect(() => {
-  const {
-    setAssetPath,
-  } = require("@esri/calcite-components/dist/components");
-  setAssetPath(
-    "https://unpkg.com/@esri/calcite-components/dist/calcite/assets"
-  );
-  require("@esri/calcite-components/dist/components/calcite-button.js");
-  require("@esri/calcite-components/dist/components/calcite-card.js");
-  require("@esri/calcite-components/dist/components/calcite-link.js");
-  require("@esri/calcite-components/dist/components/calcite-icon.js");
-}, []);
-  ```
+To run:
+```bash
+npm i && npm run dev
+```
+
+---
 
 # Welcome to Remix!
 
