@@ -25,6 +25,10 @@ useEffect(() => {
 }, []);
   ```
 
+The express packages and `server.js` are not used by this sample, they were just my attempt to prerender.
+
+---
+
 # Welcome to Remix!
 
 - [Remix Docs](https://remix.run/docs)
