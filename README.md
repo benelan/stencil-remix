@@ -9,7 +9,7 @@ Remix does not support pre-rendering at this time, but they have [an open issue 
 I was able to get the components to render on the client and put an example on the [`fix` branch](https://github.com/benelan/stencil-remix/tree/fix#stencil-remix). However, you might as well use CRA if you can't render your UI on the server or during build. The better option is to use NextJS or another framework that supports pre-rendering until Remix does too.
 
 
-## Repro Setup/Steps
+## Issue Repro Setup/Steps
 
 1. `npx create-remix@latest`
     - Named `stencil-remix`
@@ -19,44 +19,25 @@ I was able to get the components to render on the client and put an example on t
 2. `cd stencil-remix`
 3. Downgrade `react` and `react-dom` from `17.02` to `16.7.0` due to output target peer deps
 4. `npm i @esri/calcite-components-react`
-5.  Add stencil code to `app/root.jsx`:
+5.  Add stencil code to `app/routes/index.jsx.jsx`:
 ``` diff
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "remix";
 + import { setAssetPath } from "@esri/calcite-components/dist/components";
 + import "@esri/calcite-components/dist/components/calcite-button.js";
 + import { CalciteButton } from "@esri/calcite-components-react";
++ import styles from "@esri/calcite-components/dist/calcite/calcite.css";
 + setAssetPath("https://js.arcgis.com/calcite-components/1.0.0-beta.76/assets");
 
-export function meta() {
-  return { title: "New Remix App" };
-}
++ export function links() {
++   return [{ rel: "stylesheet", href: styles }];
++ }
 
-export default function App() {
+export default function Index() {
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-+       <CalciteButton>Button</CalciteButton>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
-      </body>
-    </html>
-  );
-}
+    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
+      <h1>Welcome to Remix</h1>
++     <CalciteButton>Test</CalciteButton>
+      <ul>
+   ...
 ```
 7. `npm run dev`
 8. Open app in the browser
