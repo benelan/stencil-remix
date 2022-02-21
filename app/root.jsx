@@ -6,11 +6,6 @@ import {
   Scripts,
   ScrollRestoration,
 } from "remix";
-import { setAssetPath } from "@esri/calcite-components/dist/components";
-import "@esri/calcite-components/dist/components/calcite-button.js";
-import { CalciteButton } from "@esri/calcite-components-react";
-
-setAssetPath("https://js.arcgis.com/calcite-components/1.0.0-beta.76/assets");
 
 export function meta() {
   return { title: "New Remix App" };
@@ -26,7 +21,6 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <CalciteButton>Button</CalciteButton>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
