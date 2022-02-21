@@ -40,19 +40,20 @@ export function links() {
 }
 
 function Index() {
-  useEffect(() => {
-    const {
-      setAssetPath,
-    } = require("@esri/calcite-components/dist/components");
-    setAssetPath(
-      "https://unpkg.com/@esri/calcite-components/dist/calcite/assets"
+   useEffect(() => {
+    import("@esri/calcite-components/dist/components").then(
+      ({ setAssetPath }) =>
+        setAssetPath(
+          "https://unpkg.com/@esri/calcite-components/dist/calcite/assets"
+        )
     );
-    require("@esri/calcite-components/dist/components/calcite-button.js");
-    require("@esri/calcite-components/dist/components/calcite-card.js");
-    require("@esri/calcite-components/dist/components/calcite-link.js");
-    require("@esri/calcite-components/dist/components/calcite-icon.js");
+
+    import("@esri/calcite-components/dist/components/calcite-button.js");
+    import("@esri/calcite-components/dist/components/calcite-card.js");
+    import("@esri/calcite-components/dist/components/calcite-link.js");
+    import("@esri/calcite-components/dist/components/calcite-icon.js");
   }, []);
-  
+
   return (
     <CalciteCard>
     ...

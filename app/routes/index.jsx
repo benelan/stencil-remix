@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import styles from "@esri/calcite-components/dist/calcite/calcite.css";
 import {
   CalciteCard,
   CalciteButton,
   CalciteLink,
 } from "@esri/calcite-components-react";
+import styles from "@esri/calcite-components/dist/calcite/calcite.css";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -12,16 +12,17 @@ export function links() {
 
 function Index() {
   useEffect(() => {
-    const {
-      setAssetPath,
-    } = require("@esri/calcite-components/dist/components");
-    setAssetPath(
-      "https://unpkg.com/@esri/calcite-components/dist/calcite/assets"
+    import("@esri/calcite-components/dist/components").then(
+      ({ setAssetPath }) =>
+        setAssetPath(
+          "https://unpkg.com/@esri/calcite-components/dist/calcite/assets"
+        )
     );
-    require("@esri/calcite-components/dist/components/calcite-button.js");
-    require("@esri/calcite-components/dist/components/calcite-card.js");
-    require("@esri/calcite-components/dist/components/calcite-link.js");
-    require("@esri/calcite-components/dist/components/calcite-icon.js");
+
+    import("@esri/calcite-components/dist/components/calcite-button.js");
+    import("@esri/calcite-components/dist/components/calcite-card.js");
+    import("@esri/calcite-components/dist/components/calcite-link.js");
+    import("@esri/calcite-components/dist/components/calcite-icon.js");
   }, []);
 
   return (
@@ -29,7 +30,8 @@ function Index() {
       <h1>Stencil components in Remix.run</h1>
       <p>
         If you're forcing the components to load on the client like this, then
-        you might as well use CRA. Or better yet, an SSR framework that supports pre-rendering.
+        you might as well use CRA. Or better yet, an SSR framework that supports
+        pre-rendering.
       </p>
       <CalciteCard>
         <span slot="title">Card title</span>
