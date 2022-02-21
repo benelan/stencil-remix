@@ -7,12 +7,14 @@ const app = express();
 
 app.all("*", remix.createRequestHandler({ build: require("./build") }));
 
+
+/* this is how it works in NextJS
 app.all("*", async (req, res) => {
-  // this is how it works in NextJS
-  const html = await app.renderToHTML(req, res, req.path, req.query);
+  const html = await remix.renderToHTML(req, res, req.path, req.query);
   const renderedHtml = await stencil.renderToString(html);
   return res.send(renderedHtml.html);
 });
+*/
 
 app.listen(port, () => {
   console.log(`> http://localhost:${port}`);
