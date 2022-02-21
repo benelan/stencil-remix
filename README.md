@@ -1,8 +1,9 @@
 # Stencil Remix
 See `master` branch for repro case of https://github.com/ionic-team/stencil-ds-output-targets/issues/226
 
-[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to render on the client, but that defeats the purpose of an SSR framework. The better option is to use NextJS or another framework that supports pre-rendering.
+Remix does not support pre-rendering at this time, but they have [an open issue discussing it](https://github.com/remix-run/remix/issues/179). Go give it a thumbs up!
 
+I was able to get the components to render on the client, but that defeats the purpose of an SSR framework. The better option is to use NextJS or another framework that supports pre-rendering until Remix does too.
 
 ### Run the example
 
