@@ -1,16 +1,12 @@
 # Stencil Remix
 See `master` branch for repro case of https://github.com/ionic-team/stencil-ds-output-targets/issues/226
 
-[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to [render on the client](https://github.com/benelan/stencil-remix/blob/react-output-target/app/routes/index.jsx). However, you might as well use CRA if you can't render your UI on the server. The better option is to use NextJS or another framework that supports pre-rendering.
+[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to [render on the client](https://github.com/benelan/stencil-remix/blob/fix/routes/index.jsx). However, you might as well use CRA if you can't render your UI on the server. The better option is to use NextJS or another framework that supports pre-rendering.
 
 To run:
 ```bash
 npm i && npm run dev
 ```
-
----
-
-The express packages and `server.js` are not used by this sample, they were just my attempt to prerender.
 
 ---
 
