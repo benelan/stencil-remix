@@ -19,7 +19,7 @@ I was able to get the components to render on the client and put an example on t
 2. `cd stencil-remix`
 3. Downgrade `react` and `react-dom` from `17.02` to `16.7.0` due to output target peer deps
 4. `npm i @esri/calcite-components-react`
-5.  Add stencil code to `app/routes/index.jsx.jsx`:
+5.  Add stencil code to `app/routes/index.jsx`:
 ``` diff
 + import { setAssetPath } from "@esri/calcite-components/dist/components";
 + import "@esri/calcite-components/dist/components/calcite-button.js";
