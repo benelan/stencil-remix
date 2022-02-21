@@ -1,5 +1,5 @@
 # Stencil Remix
-See `master` branch for repro case of https://github.com/ionic-team/stencil-ds-output-targets/issues/226
+See `master` branch for the repro case of the stencil output target [issue](https://github.com/ionic-team/stencil-ds-output-targets/issues/226).
 
 Remix does not support pre-rendering at this time, but they have [an open issue discussing it](https://github.com/remix-run/remix/issues/179). Go give it a thumbs up!
 
