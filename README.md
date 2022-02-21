@@ -1,13 +1,61 @@
 # Stencil Remix
 See `master` branch for repro case of https://github.com/ionic-team/stencil-ds-output-targets/issues/226
 
-[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to [render on the client](https://github.com/benelan/stencil-remix/blob/fix/routes/index.jsx). However, you might as well use CRA if you can't render your UI on the server. The better option is to use NextJS or another framework that supports pre-rendering.
+[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to render on the client, but that defeats the purpose of an SSR framework. The better option is to use NextJS or another framework that supports pre-rendering.
 
-To run:
+
+### Run the example
+
 ```bash
 npm i && npm run dev
 ```
 
+### Relevant code
+
+In [`remix.config.js`](https://github.com/benelan/stencil-remix/blob/fix/remix.config.js):
+
+```js
+module.exports = {
+...
+  serverDependenciesToBundle: [
+    "@esri/calcite-components",
+    "@esri/calcite-components-react",
+  ],
+};
+```
+In [`app/routes/index.jsx`](https://github.com/benelan/stencil-remix/blob/fix/app/routes/index.jsx):
+
+```jsx
+import { useEffect } from "react";
+import {
+  CalciteCard,
+  CalciteButton,
+  CalciteLink,
+} from "@esri/calcite-components-react";
+import styles from "@esri/calcite-components/dist/calcite/calcite.css";
+
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
+}
+
+function Index() {
+  useEffect(() => {
+    const {
+      setAssetPath,
+    } = require("@esri/calcite-components/dist/components");
+    setAssetPath(
+      "https://unpkg.com/@esri/calcite-components/dist/calcite/assets"
+    );
+    require("@esri/calcite-components/dist/components/calcite-button.js");
+    require("@esri/calcite-components/dist/components/calcite-card.js");
+    require("@esri/calcite-components/dist/components/calcite-link.js");
+    require("@esri/calcite-components/dist/components/calcite-icon.js");
+  }, []);
+  
+  return (
+    <CalciteCard>
+    ...
+```
 ---
 
 # Welcome to Remix!
