@@ -4,7 +4,9 @@ Repro case for https://github.com/ionic-team/stencil-ds-output-targets/issues/22
 I haven't tried to transpile the modules with babel yet, if I get it working I'll add another branch and update this readme. Remix is an SSR framework so, even after transpiling, there will likely be additional complications using web components, which rely on browser APIs.
 
 ### Update
-[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to render on the client on the [`fix` branch](https://github.com/benelan/stencil-remix/tree/fix#stencil-remix). However, you might as well use CRA if you can't render your UI on the server. The better option is to use NextJS or another framework that supports pre-rendering.
+Remix does not support pre-rendering at this time, but they have [an open issue discussing it](https://github.com/remix-run/remix/issues/179). Go give it a thumbs up!
+
+I was able to get the components to render on the client and put an example on the [`fix` branch](https://github.com/benelan/stencil-remix/tree/fix#stencil-remix). However, you might as well use CRA if you can't render your UI on the server or during build. The better option is to use NextJS or another framework that supports pre-rendering until Remix does too.
 
 
 ## Repro Setup/Steps
