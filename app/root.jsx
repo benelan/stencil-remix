@@ -6,14 +6,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "remix";
-import styles from "@esri/calcite-components/dist/calcite/calcite.css";
 
 export function meta() {
-  return { title: "New Remix App" };
-}
-
-export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return { title: "Stencil Remix" };
 }
 
 export default function App() {

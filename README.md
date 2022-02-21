@@ -1,80 +1,22 @@
 # Stencil Remix
-Repro case for https://github.com/ionic-team/stencil-ds-output-targets/issues/226
+See `master` branch for repro case of https://github.com/ionic-team/stencil-ds-output-targets/issues/226
 
-I haven't tried to transpile the modules with babel yet, if I get it working I'll add another branch and update this readme. Remix is an SSR framework so, even after transpiling, there will likely be additional complications using web components, which rely on browser APIs.
+[Remix does not support pre-rendering at this time.](https://github.com/remix-run/remix/issues/179) I was able to get the components to [render on the client](https://github.com/benelan/stencil-remix/blob/fix/app/routes/index.jsx). However, you might as well use CRA if you can't render your UI on the server. The better option is to use NextJS or another framework that supports pre-rendering.
 
-## Repro Setup/Steps
-
-1. `npx create-remix@latest`
-    - Named `stencil-remix`
-    - Remix App Server
-    - JavaScript
-    - Run `npm install`
-2. `cd stencil-remix`
-3. Downgrade `react` and `react-dom` from `17.02` to `16.7.0` due to output target peer deps
-4. `npm i @esri/calcite-components-react`
-5.  Add stencil code to `app/root.jsx`:
-``` diff
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "remix";
-+ import { setAssetPath } from "@esri/calcite-components/dist/components";
-+ import "@esri/calcite-components/dist/components/calcite-button.js";
-+ import { CalciteButton } from "@esri/calcite-components-react";
-+ setAssetPath("https://js.arcgis.com/calcite-components/1.0.0-beta.76/assets");
-
-export function meta() {
-  return { title: "New Remix App" };
-}
-
-export default function App() {
-  return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-+       <CalciteButton>Button</CalciteButton>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
-      </body>
-    </html>
+```jsx
+useEffect(() => {
+  const {
+    setAssetPath,
+  } = require("@esri/calcite-components/dist/components");
+  setAssetPath(
+    "https://unpkg.com/@esri/calcite-components/dist/calcite/assets"
   );
-}
-```
-7. `npm run dev`
-8. Open app in the browser
-9. Error:
-```bash
-export { setAssetPath, setPlatformOptions } from '@stencil/core/internal/client';
-^^^^^^
-
-SyntaxError: Unexpected token 'export'
-    at Object.compileFunction (node:vm:352:18)
-    at wrapSafe (node:internal/modules/cjs/loader:1031:15)
-    at Module._compile (node:internal/modules/cjs/loader:1065:27)
-    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1153:10)
-    at Module.load (node:internal/modules/cjs/loader:981:32)
-    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
-    at Module.require (node:internal/modules/cjs/loader:1005:19)
-    at require (node:internal/modules/cjs/helpers:102:18)
-    at Object.<anonymous> (/home/ben/dev/stencil-remix/build/index.js:408:36)
-    at Module._compile (node:internal/modules/cjs/loader:1101:14)
-GET / 500 - - 29.345 ms
-```
-
-
----
+  require("@esri/calcite-components/dist/components/calcite-button.js");
+  require("@esri/calcite-components/dist/components/calcite-card.js");
+  require("@esri/calcite-components/dist/components/calcite-link.js");
+  require("@esri/calcite-components/dist/components/calcite-icon.js");
+}, []);
+  ```
 
 # Welcome to Remix!
 
